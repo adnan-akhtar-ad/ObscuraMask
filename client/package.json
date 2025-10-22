@@ -1,0 +1,46 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main/main.js",
+  "author": "Team Zero",
+  "description": "ObscuraMask is a Generative AI-powered tool that enables users to mask sensitive data and securely encrypt/decrypt CSV, Excel, PDF, and text files using redaction, obfuscation, and robust encryption methods.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && electron-builder",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "^8.20.6",
+    "@types/react-pdf": "^7.0.0",
+    "electron-serve": "^2.1.1",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^12.12.1",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.473.0",
+    "next": "15.1.5",
+    "papaparse": "^5.5.1",
+    "pdfjs-dist": "^4.8.69",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.5",
+    "react-pdf": "^9.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/papaparse": "^5.3.15",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
+    "electron": "^34.0.0",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.5",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

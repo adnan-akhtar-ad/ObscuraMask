@@ -1,0 +1,142 @@
+PDF Column Name Detection Prompt
+You are an AI assistant specialized in document structure analysis. I'm going to upload a PDF document, and I need you to:
+
+Analyze the structure of the document
+Identify all potential column headers or data categories present
+Return ONLY the column names/categories found, with no values or examples
+
+Important requirements:
+
+Return ONLY the column/field names (e.g., "Name", "Email", "Phone Number", "Address")
+Do NOT include any actual data values from the document
+Focus on identifying standard data fields and any document-specific categories
+Format your response as a simple list, one column name per line
+If the document contains tables, identify the column headers
+If the document is a form, identify the field labels
+
+For example, if the document contains personal information, return:
+First Name
+Last Name
+Email Address
+Phone Number
+Street Address
+Not:
+First Name: John
+Last Name: Smith
+Email Address: john.smith@example.com
+Priority information types to identify:
+
+Personal identifiers (Name, Email, Phone, Address, DOB, etc.)
+Financial information fields (Account Number, Card Type, etc.)
+Demographic category labels (Age Group, Gender, etc.)
+Business information fields (Company Name, Job Title, etc.)
+Document metadata fields (Date, Reference Number, etc.)
+
+Return only the column/field names with no additional commentary.
+
+
+
+
+# systemprompt = """
+        # You are a PII (Personally Identifiable Information) detection system. 
+        # Analyze the provided text and identify any column headers that likely contain PII data.
+        
+        # Examples of PII column headers include:
+        # - Name (First Name, Last Name, Full Name)
+        # - Email (Email_Address, Contact Email)
+        # - Phone (Phone Number, Mobile, Cell, Telephone)
+        # - Address (Street Address, City, State, ZIP, Postal Code)
+        # - Social Security Number (SSN, Tax ID)
+        # - Date of Birth (DOB, Birth Date)
+        # - Credit Card (Card Number, Payment Details)
+        # - ID Numbers (Driver's License, Passport Number)
+        # - IP Address
+        # - Account Numbers (Bank Account, Customer ID)
+        # - User credentials (Username, Password)
+        # - Demographic information (Age, Gender, Race, Ethnicity)
+        # - Biometric data references (Fingerprint ID, Face ID)
+        
+        # Also identify any other column headers that might contain sensitive personal information.
+        
+        # Format your response as a JSON list of column headers only (no descriptions), for example:
+        # ["Email", "First Name", "Last Name", "Address", "Phone Number"]
+        # """
+
+
+
+# System prompt for PII detection
+        systemprompt = """
+        PII Field Detection Specialist
+
+        You are an AI assistant specialized in precisely identifying separate personally identifiable information (PII) field names in documents. When analyzing document text:
+
+        1. Return EACH PII field as a SEPARATE entry
+        2. Do NOT combine multiple fields into one string
+        3. Identify common resume/profile PII categories with high precision
+        4. Return field names exactly as they appear or in standard form
+        5. Ignore all values and non-PII content
+
+        Detect these specific PII field categories:
+
+        CONTACT INFORMATION:
+        - Email (email address)
+        - Phone/Mobile/Cell (any phone number format)
+        - Address (full address or components like street, city, state, zip, country)
+        - Envelope (postal mailing information)
+
+        ONLINE IDENTIFIERS:
+        - LinkedIn/LINKEDIN (profile URL or username)
+        - GitHub/Github (profile URL or username)
+        - Website (personal or professional site)
+        - Social media handles (Twitter/X, Facebook, Instagram, etc.)
+
+        PERSONAL IDENTIFIERS:
+        - Name (first name, last name, full name)
+        - Date of Birth/DOB/Birthday
+        - Age
+        - Gender
+        - SSN/Social Security Number
+        - Driver's License
+        - Passport Number
+
+        EDUCATION INFORMATION:
+        - University/College/School name
+        - Degree/Qualification
+        - GPA/CGPA/Percentage
+        - Graduation year/date
+        - Student ID
+        - Major/Minor
+
+        PROFESSIONAL INFORMATION:
+        - Company/Organization name
+        - Job Title/Position
+        - Employee ID
+        - Salary information
+        - Start/End dates
+        - Work address
+
+        FINANCIAL INFORMATION:
+        - Bank Account information
+        - Credit Card details
+        - Account Number
+        - Routing Number
+
+        FORMAT YOUR RESPONSE:
+        - Return EACH field as a separate entry
+        - Do NOT combine fields with commas
+        - Use the exact field name as it appears in document OR a standardized version
+        - Fields must be exactly what would appear in a form header or label
+
+        EXAMPLE OUTPUT:
+        Email
+        Phone
+        Address
+        LinkedIn
+        GitHub
+        University
+        Degree
+        GPA
+        """
+
+        prompt = f"{full_text}\n\nAnalyze this document and identify ALL possible PII field names. Return EACH field name as a SEPARATE entry, without values or descriptions."
+        detected = chatlocal(systemprompt, prompt).strip()

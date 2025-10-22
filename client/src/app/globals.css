@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animation keyframes */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* PDF Viewer specific styles */
+.pdf-container {
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.react-pdf__Page {
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  background: white;
+}
+
+.react-pdf__Page canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* PDF Controls */
+.pdf-controls {
+  @apply transition-all duration-300;
+}
+
+.pdf-controls button {
+  @apply transition-all duration-200;
+}
+
+.pdf-controls button:hover {
+  @apply transform scale-105;
+}
+
+.pdf-controls select {
+  @apply appearance-none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+/* Improved scrollbar for the PDF viewer */
+.pdf-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.pdf-container::-webkit-scrollbar-track {
+  @apply bg-black/20 rounded-full;
+}
+
+.pdf-container::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full hover:bg-gray-500 transition-colors;
+}
+
+/* Dropdown hover states */
+select option:hover, 
+select option:focus {
+  @apply bg-blue-600;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .react-pdf__Page {
+    margin: 0 auto;
+    max-width: 100vw !important;
+    height: auto !important;
+  }
+  
+  .react-pdf__Page canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}

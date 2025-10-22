@@ -1,0 +1,89 @@
+# === Client (Next.js) ===
+client/node_modules/
+client/.npm/
+client/.next/
+client/out/
+client/dist/
+client/package-lock.json
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+client/.env
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# === Server (Python) ===
+# Cache and bytecode
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.so
+
+# Build/distribution
+server/.Python
+server/build/
+server/dist/
+server/develop-eggs/
+server/downloads/
+server/eggs/
+server/.eggs/
+server/lib/
+server/lib64/
+server/parts/
+server/sdist/
+server/var/
+server/*.egg-info/
+server/.installed.cfg
+server/*.egg
+server/MANIFEST
+
+# Logs and debug
+server/*.log
+server/pip-log.txt
+server/pip-delete-this-directory.txt
+
+# Test/coverage
+server/htmlcov/
+server/.tox/
+server/.nox/
+server/.coverage
+server/.coverage.*
+server/.cache
+server/nosetests.xml
+server/coverage.xml
+server/*.cover
+server/.hypothesis/
+server/.pytest_cache/
+
+# Virtual environments
+server/env/
+server/ENV/
+server/.venv/
+server/env.bak/
+server/venv.bak/
+
+# Flask specific
+server/instance/
+server/.webassets-cache
+
+# Environment
+server/.env
+
+# === Global / Editor / OS ===
+.DS_Store
+*.swp
+.sass-cache/
+.idea/
+.vscode/
+Thumbs.db
+ehthumbs.db
+
+# === Explicit Includes (track even if ignored above) ===
+!server/venv/
+!server/en_core_web_sm/
+!server/vosk-model-small-en-us-0.15/
+!server/vosk-model-en-us-0.42-gigaspeech/
+!server/chat.py
